@@ -24,7 +24,7 @@ function consumeCallback(msg) {
         console.log('Event message has no content');
     }
 
-    EventMessage.getChannel().ack(msg);
+    EventQueue.getChannel().ack(msg);
 
     const content = JSON.parse(msg.content.toString());
     console.log('Received event with content ' + JSON.stringify(content));
