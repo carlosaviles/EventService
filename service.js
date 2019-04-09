@@ -3,7 +3,7 @@ var EventHandler = null;
 
 init();
 
-function setEventHandler(eh) {
+function addEventHandler(eh) {
     EventHandler = eh;
     console.log('Set event handler to ' + JSON.stringify(EventHandler));
 }
