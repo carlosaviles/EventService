@@ -49,4 +49,4 @@ function init() {
     }
 }
 
-module.exports.setEventHandler = setEventHandler;
+module.exports.addEventHandler = addEventHandler;
