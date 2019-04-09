@@ -5,6 +5,7 @@ init();
 
 function setEventHandler(eh) {
     EventHandler = eh;
+    console.log('Set event handler to ' + JSON.stringify(EventHandler));
 }
 
 function eventQueueReady() {
