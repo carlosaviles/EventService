@@ -69,4 +69,9 @@ function init() {
     }
 }
 
+function publishEvent(message, eventType) {
+    EventQueue.publishEvent(message, eventType);
+}
+
 module.exports.addEventHandler = addEventHandler;
+module.exports.publishEvent = publishEvent;
