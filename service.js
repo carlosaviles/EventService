@@ -25,7 +25,7 @@ function consumeCallback(msg) {
         console.log('Event message has no content');
     }
 
-    EventQueue.getChannel().ack(msg);
+    //EventQueue.getChannel().ack(msg);
 
     const content = JSON.parse(msg.content.toString());
     console.log('Received event with content ' + JSON.stringify(content));
@@ -33,8 +33,28 @@ function consumeCallback(msg) {
     if (EventHandler === null) {
         console.log('There is no event handler available. Event processing is ignored');
     } else {
-        EventHandler.handle(content);
+        EventHandler.handle(msg, handlingCallback);
     }
+}
+
+function handlingCallback(msg, responseContent, responseKey) {
+
+    if(!msg) {
+        console.log('Unable to ack undefined message.');
+    } else {
+
+        if (!responseContent) {
+            console.log('No response required');
+        } else {
+            EventQueue.publishEvent(responseContent, responseKey);
+        }
+
+        EventQueue.getChannel().ack(msg);
+        console.log('Message ack\'d');
+    }
+
+    
+
 }
 
 function init() {
