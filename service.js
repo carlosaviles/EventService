@@ -40,12 +40,12 @@ function consumeCallback(msg) {
 function init() {
     console.log('Service init');
 
-    const eventName = process.env.EVENT_NAME || null;
+    const eventNames = process.env.EVENT_NAMES;
 
-    if (eventName === null) {
-        console.log('EventName is not defined. Will not listen to events');
+    if (!eventNames) {
+        console.log('EventNames is not defined. Will not listen to events');
     } else {
-        EventQueue.connect(eventQueueReady, eventName);
+        EventQueue.connect(eventQueueReady, eventNames.split(' '));
     }
 }
 
