@@ -1,8 +1,6 @@
 const EventQueue = require('eventqueue');
 var EventHandler = null;
 
-init();
-
 function addEventHandler(eh) {
     EventHandler = eh;
     console.log('Set event handler to ' + JSON.stringify(EventHandler));
@@ -57,10 +55,8 @@ function handlingCallback(msg, responseContent, responseKey) {
 
 }
 
-function init() {
+function init(eventNames) {
     console.log('Service init');
-
-    const eventNames = process.env.EVENT_NAMES;
 
     if (!eventNames) {
         console.log('EventNames is not defined. Will not listen to events');
@@ -75,3 +71,4 @@ function publishEvent(message, eventType) {
 
 module.exports.addEventHandler = addEventHandler;
 module.exports.publishEvent = publishEvent;
+module.exports.init = init;
